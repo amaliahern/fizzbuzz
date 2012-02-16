@@ -26,11 +26,28 @@ class Test_FizzBuzz < MiniTest::Unit::TestCase
                 assert_equal 'fizz',count(6)
         end
 
+        def test_input_nine_put_fizz
+                assert_equal 'fizz',count(9)
+        end
+
+        def test_input_ten_put_buzz
+                assert_equal 'buzz',count(10)
+        end
+
+        def test_input_fifteen_put_fizzbuzz
+               assert_equal 'fizzbuzz',count(15)
+        end
+
         def count(number)
-       fizzbuzz_value = case number
-                        when (number%3 == 0)  then 'fizz'
-                        when 5 then 'buzz'
-                        else number.to_s
-                        end 
+            case  
+                 when (is_divisible?(number,3)  and is_divisible?(number,5)) then 'fizzbuzz'
+                 when is_divisible?(number,3)  then 'fizz'
+                 when is_divisible?(number,5)  then 'buzz'
+                 else number.to_s
+            end 
+        end
+
+        def is_divisible?(number,divisor)
+                number%divisor == 0
         end
 end
